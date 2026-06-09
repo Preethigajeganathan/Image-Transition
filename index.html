@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Transition</title>
+    <link rel="stylesheet" href="Transition.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-box">
+            <img src="images/transparent.png" alt="Transparent image" width="100%">
+
+            <div class="img-wrap">
+                <img src="images/original.jpg" id="originalImg" alt="Original image" >
+            </div>
+
+            <span id="slider">
+                <img src="images/arrow.png" class="arrow" alt="Slider handle">
+            </span>
+
+        </div>
+    </div>
+
+    <script>
+        var ImgBox = document.querySelector(".img-box")
+        var imgWrap = document.querySelector(".img-wrap")
+        var originalImg = document.getElementById("originalImg");
+        var slider = document.getElementById("slider");
+
+        originalImg.style.width = ImgBox.offsetWidth + "px"
+
+        var leftspace = ImgBox.offsetLeft;
+
+        ImgBox.onmousemove = function(e) {
+        const rect = ImgBox.getBoundingClientRect();
+        const boxwidth = e.clientX - rect.left;
+
+        imgWrap.style.width = boxwidth + "px";
+        slider.style.left = boxwidth + "px";
+        };
+        window.addEventListener("resize", () => {
+        originalImg.style.width = ImgBox.offsetWidth + "px";
+        });
+        
+    </script>
+
+</body>
+</html>
+<!-- removebg - to remove backround of the image -->
