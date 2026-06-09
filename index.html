@@ -23,25 +23,36 @@
     </div>
 
     <script>
-        var ImgBox = document.querySelector(".img-box")
-        var imgWrap = document.querySelector(".img-wrap")
+        var ImgBox = document.querySelector(".img-box");
+        var imgWrap = document.querySelector(".img-wrap");
         var originalImg = document.getElementById("originalImg");
         var slider = document.getElementById("slider");
 
-        originalImg.style.width = ImgBox.offsetWidth + "px"
-
-        var leftspace = ImgBox.offsetLeft;
-
-        ImgBox.onmousemove = function(e) {
-        const rect = ImgBox.getBoundingClientRect();
-        const boxwidth = e.clientX - rect.left;
-
-        imgWrap.style.width = boxwidth + "px";
-        slider.style.left = boxwidth + "px";
-        };
-        window.addEventListener("resize", () => {
         originalImg.style.width = ImgBox.offsetWidth + "px";
-        });
+
+       function moveSlider(x) {
+         const rect = ImgBox.getBoundingClientRect();
+
+       let boxwidth = x - rect.left;
+
+       if (boxwidth < 0) boxwidth = 0;
+       if (boxwidth > rect.width) boxwidth = rect.width;
+
+       imgWrap.style.width = boxwidth + "px";
+       slider.style.left = boxwidth + "px";
+       }
+
+      ImgBox.addEventListener("mousemove", function(e) {
+      moveSlider(e.clientX);
+      });
+
+      ImgBox.addEventListener("touchmove", function(e) {
+      moveSlider(e.touches[0].clientX);
+      });
+
+     window.addEventListener("resize", function() {
+     originalImg.style.width = ImgBox.offsetWidth + "px";
+     });
         
     </script>
 
