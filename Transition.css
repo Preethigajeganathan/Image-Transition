@@ -43,14 +43,13 @@ span{
     margin-left: -20px;
     margin-top: -20px;
 }
-/* Tablet */
+
 @media (max-width: 992px){
     .img-box{
         width: 80%;
     }
 }
 
-/* Mobile */
 @media (max-width: 768px){
     .img-box{
         width: 95%;
@@ -61,7 +60,7 @@ span{
     }
 }
 
-/* Small Mobile */
+
 @media (max-width: 480px){
     .img-box{
         width: 100%;
